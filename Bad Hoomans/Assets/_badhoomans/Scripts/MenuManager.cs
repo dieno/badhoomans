@@ -14,7 +14,7 @@ public class MenuManager : MonoBehaviour
 
     void StartBtnFunction()
     {
-        SceneManager.LoadScene("test");
+        SceneManager.LoadScene("main");
     }
 
     void ExitBtnFunction()
