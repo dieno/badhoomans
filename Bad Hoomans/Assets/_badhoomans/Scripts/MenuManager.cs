@@ -22,18 +22,15 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
 
-    void UpdateHighScore()
-    {
-        // connect this function to end of game level
-        // replace "10" with actual high score variable
-        highScoreText.text = "10";
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         startButton.onClick.AddListener(StartBtnFunction);
         exitButton.onClick.AddListener(ExitBtnFunction);
+
+        // TODO connect this function to end of game level
+        // replace "10" with actual high score variable
+        highScoreText.text = "10";
     }
 
     // Update is called once per frame
