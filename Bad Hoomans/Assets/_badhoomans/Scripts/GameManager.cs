@@ -7,11 +7,6 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
-    // menu scene objects 
-    public Button startButton;
-    public Button exitButton;
-    public Text highScoreText;
-
     // game scene objects
     public Text currentScoreText;
     public Image hpImage;
@@ -22,24 +17,6 @@ public class GameManager : MonoBehaviour
     private const float hitPoint = 0.5f;
     private const float maxHp = 10.0f;
     private float currentHp = maxHp;
-
-
-    void StartBtnFunction()
-    {
-        SceneManager.LoadScene("test");
-    }
-
-    void ExitBtnFunction()
-    {
-        Application.Quit();
-    }
-
-    void UpdateHighScore()
-    {
-        // connect this function to end of game level
-        // replace "10" with actual high score variable
-        highScoreText.text = "10";
-    }
 
     void takeHit()
     {
@@ -63,9 +40,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //startButton.onClick.AddListener(UpdateHighScore);
-        startButton.onClick.AddListener(StartBtnFunction);
-        exitButton.onClick.AddListener(ExitBtnFunction);
     }
 
     // Update is called once per frame

@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 590990222}
   - component: {fileID: 590990221}
   m_Layer: 5
-  m_Name: HighScoreNum
+  m_Name: HighScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 897480873}
   - component: {fileID: 897480872}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: MenuManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -596,7 +596,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 897480871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82680ecc9a31b004d9b8b4a5c7945f4a, type: 3}
+  m_Script: {fileID: 11500000, guid: e189fa90217204d66938d6737e5b26e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startButton: {fileID: 1008032923}
@@ -834,7 +834,7 @@ GameObject:
   - component: {fileID: 1363742735}
   - component: {fileID: 1363742734}
   m_Layer: 5
-  m_Name: Text
+  m_Name: StartText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1067,7 +1067,7 @@ GameObject:
   - component: {fileID: 2065220520}
   - component: {fileID: 2065220519}
   m_Layer: 5
-  m_Name: Exit
+  m_Name: ExitText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
