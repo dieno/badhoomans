@@ -7,6 +7,9 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
+    // game systems
+    [SerializeField] private ProjectileSystem projectileSystem = null;
+
     // game scene objects
     public Text currentScoreText;
     public Image hpImage;
