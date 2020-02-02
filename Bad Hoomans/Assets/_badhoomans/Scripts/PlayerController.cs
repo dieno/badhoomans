@@ -91,12 +91,17 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (objectUnderHand != null)
+            if(isHolding)
             {
-                objectUnderHand.layer = LayerMask.NameToLayer("Default");
-               
+                if (objectUnderHand != null)
+                {
+                    objectUnderHand.layer = LayerMask.NameToLayer("Default");
+                    objectUnderHand = null;
+
+                }
+                isHolding = false;
+                isHovering = false;
             }
-            isHolding = false;
         }
 
         if(isHolding)
@@ -105,7 +110,8 @@ public class PlayerController : MonoBehaviour
             {
                 objectUnderHand.layer = LayerMask.NameToLayer("Ignore Player");
                 objectUnderHand.GetComponent<Rigidbody2D>().MovePosition(hand.position);
-
+                objectUnderHand.transform.rotation = Quaternion.identity;
+                objectUnderHand.GetComponent<Rigidbody2D>().angularVelocity = 0f;
                 //objectUnderHand.transform.position = hand.position;
                 //objectUnderHand = null;
             }
