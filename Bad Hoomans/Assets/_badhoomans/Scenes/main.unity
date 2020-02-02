@@ -1417,8 +1417,8 @@ MonoBehaviour:
   topRightAnchor: {fileID: 1910249944}
   houseAnchor: {fileID: 1139083846}
   force: 50000
-  delay: 2
-  timeToLive: 2
+  delay: 10
+  timeToLive: 4
   indicator: {fileID: 1632165278}
   Countdown: {fileID: 384614553}
 --- !u!4 &383097486
