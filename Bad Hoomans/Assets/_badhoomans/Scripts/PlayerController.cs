@@ -150,11 +150,28 @@ public class PlayerController : MonoBehaviour
         {
             if(objectUnderHand != null)
             {
-                //objectUnderHand.layer = LayerMask.NameToLayer("Ignore Player");
-                objectUnderHand.GetComponent<SpriteRenderer>().sortingOrder = 3;
-                objectUnderHand.GetComponent<Rigidbody2D>().MovePosition(hand.position);
-                objectUnderHand.transform.rotation = Quaternion.identity;
-                objectUnderHand.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+                Vector2 currentPos = new Vector2(objectUnderHand.transform.position.x, objectUnderHand.transform.position.y);
+
+                if(Vector2.Distance(currentPos, transform.position) > (handRadius + 1f))
+                {
+                    if (objectUnderHand != null)
+                    {
+                        //objectUnderHand.layer = LayerMask.NameToLayer("Default");
+                        objectUnderHand.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                        objectUnderHand = null;
+
+                    }
+                    isHolding = false;
+                    isHovering = false;
+                }
+                else
+                {
+                    //objectUnderHand.layer = LayerMask.NameToLayer("Ignore Player");
+                    objectUnderHand.GetComponent<SpriteRenderer>().sortingOrder = 3;
+                    objectUnderHand.GetComponent<Rigidbody2D>().MovePosition(hand.position);
+                    objectUnderHand.transform.rotation = Quaternion.identity;
+                    objectUnderHand.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+                }
             }
         }
 
@@ -165,14 +182,10 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        Vector3 A = transform.position + (Vector3.up * 2f);
-        Vector3 B = transform.position - (Vector3.up * 2f);
+        Vector3 YAxisLineStart = transform.position + (Vector3.up * 2f);
+        Vector3 YAxisLineEnd = transform.position - (Vector3.up * 2f);
 
-        //(AB, AM), where M(X, Y) is the query point:
-
-        //position = sign((Bx - Ax) * (Y - Ay) - (By - Ay) * (X - Ax))
-
-        float facingDirection = (B.x - A.x) * (currentCursorPosition.y - A.y) - (B.y - A.y) * (currentCursorPosition.x - A.x);
+        float facingDirection = (YAxisLineEnd.x - YAxisLineStart.x) * (currentCursorPosition.y - YAxisLineStart.y) - (YAxisLineEnd.y - YAxisLineStart.y) * (currentCursorPosition.x - YAxisLineStart.x);
 
         if(facingDirection >= 0)
         {
@@ -184,7 +197,9 @@ public class PlayerController : MonoBehaviour
             sr.flipX = false;
             handSprite.flipX = true;
         }
+        
 
+        
     }
 
     private void OnJumpStart()

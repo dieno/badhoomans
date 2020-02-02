@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/_badhoomans/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/_badhoomans/Scenes/main_menu.unity
     guid: bb733d46c9fd744be981588da9504a42
-  - enabled: 1
+  - enabled: 0
     path: Assets/_badhoomans/Scenes/test.unity
     guid: f3c31800c1814284a9000b06b12347ad
+  - enabled: 1
+    path: Assets/_badhoomans/Scenes/main.unity
+    guid: 60d073fcff292904790afe13d63ad18d
   m_configObjects: {}
