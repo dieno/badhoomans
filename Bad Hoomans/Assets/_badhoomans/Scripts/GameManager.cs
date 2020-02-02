@@ -59,15 +59,33 @@ public class GameManager : MonoBehaviour
             currentScoreText.text = Mathf.Ceil(currentScore).ToString();
         }
 
-        // TODO this is only for testing to simulate a hit
-        if (Input.GetKeyDown("z"))
+
+
+
+        if(currentHp <= 0f)
         {
-            takeHit();
+            float currentHighscore = PlayerPrefs.GetFloat("HIGHSCORE", 0);
+
+            if(currentScore > currentHighscore)
+            {
+                PlayerPrefs.SetFloat("HIGHSCORE", currentScore);
+            }
+
+            PlayerPrefs.SetFloat("SCORE", currentScore);
+
+            SceneManager.LoadScene("end");
         }
-        if(Input.GetKeyDown("x"))
-        {
-            heal();
-        }
+
+
+        //// TODO this is only for testing to simulate a hit
+        //if (Input.GetKeyDown("z"))
+        //{
+        //    takeHit();
+        //}
+        //if(Input.GetKeyDown("x"))
+        //{
+        //    heal();
+        //}
 
     }
 }
