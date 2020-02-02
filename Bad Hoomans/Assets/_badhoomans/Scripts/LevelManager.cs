@@ -10,10 +10,13 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float gapSize;
     [SerializeField] private Transform bricksParentObject;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
         //GenerateTestPyramid(worldPositionAnchor.position);
+
     }
 
     // Update is called once per frame
