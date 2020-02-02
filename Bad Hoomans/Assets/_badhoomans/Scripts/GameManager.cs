@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         projectileSystem.Begin();
-
+        Cursor.visible = false;
     }
 
     // Update is called once per frame

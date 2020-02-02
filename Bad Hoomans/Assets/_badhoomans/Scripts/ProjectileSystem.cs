@@ -13,6 +13,7 @@ public class ProjectileSystem : MonoBehaviour
     [SerializeField] private Transform houseAnchor;
     [SerializeField] private float force = 5f;
     [SerializeField] private int delay = 10;
+    [SerializeField] private float timeToLive = 5f;
 
     [SerializeField] private RectTransform indicator;
     [SerializeField] private Text Countdown;
@@ -73,10 +74,7 @@ public class ProjectileSystem : MonoBehaviour
 
         projectile.GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
         projectile.GetComponent<Projectile>().gameManager = gameManager;
-
-
-
-        
+        projectile.GetComponent<Projectile>().timeToLive = timeToLive;
     }
 
     public IEnumerator BeginCountdown()

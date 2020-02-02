@@ -5,20 +5,26 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public GameManager gameManager = null;
-    [SerializeField] private float timeToLive = 5f;
+    public float timeToLive = 5f;
+
+    private bool canCauseDamage = true;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
        if(collision.gameObject.CompareTag("House"))
        {
-            gameManager.takeHit();
+            if(canCauseDamage)
+            {
+                canCauseDamage = false;
+                gameManager.takeHit();
+            }
        }
     }
 
 
     private void Start()
     {
-        DestroyAtTime(timeToLive);
+        StartCoroutine(DestroyAtTime(timeToLive));
     }
 
 
