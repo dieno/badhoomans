@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameManager gameManager = null;
+    public float timeToLive = 5f;
+
+    private bool canCauseDamage = true;
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+       if(collision.gameObject.CompareTag("House"))
+       {
+            if(canCauseDamage)
+            {
+                canCauseDamage = false;
+                gameManager.takeHit();
+            }
+       }
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Start()
     {
-        
+        StartCoroutine(DestroyAtTime(timeToLive));
+    }
+
+
+    private IEnumerator DestroyAtTime(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        Destroy(gameObject);
     }
 }

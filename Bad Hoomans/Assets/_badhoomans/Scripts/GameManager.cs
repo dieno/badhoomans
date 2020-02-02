@@ -18,11 +18,11 @@ public class GameManager : MonoBehaviour
     // private variables
     private float currentScore = 0.0f;
     private double time = -1;
-    private const float hitPoint = 0.5f;
+    private const float hitPoint = 2f;
     private const float maxHp = 10.0f;
     private float currentHp = maxHp;
 
-    void takeHit()
+    public void takeHit()
     {
         if (currentHp > 0)
         {
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void heal()
+    public void heal()
     {
         if(currentHp < maxHp)
         {
@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        projectileSystem.Begin();
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
