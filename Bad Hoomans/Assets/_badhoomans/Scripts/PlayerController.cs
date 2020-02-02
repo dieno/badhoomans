@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
     private bool isJumpCanceled = false;
     private bool canBeginJump = false;
 
+
+    private bool jumpButtonReset = true;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -49,19 +52,20 @@ public class PlayerController : MonoBehaviour
     {
         velocity.y -= gravity;
 
-        if (!isGrounded)
-        {
-            currentJumpLength -= Time.deltaTime;
-        }
-
         Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         currentCursorPosition = new Vector2(worldPoint.x, worldPoint.y);
 
         if (Input.GetButton("Jump"))
         {
-            if(!isJumpCanceled)
+            if(!isJumpCanceled && jumpButtonReset)
             {
                 OnJumpStart();
+            }
+
+            if (!isGrounded)
+            {
+                currentJumpLength -= Time.deltaTime;
+                //Debug.Log(currentJumpLength);
             }
         }
 
@@ -72,6 +76,7 @@ public class PlayerController : MonoBehaviour
                 OnJumpEnd();
             }
         }
+
 
         velocity.x = Input.GetAxis("Horizontal") * speed;
 
@@ -87,17 +92,33 @@ public class PlayerController : MonoBehaviour
             canBeginJump = true;
         }
 
+
         if (transform.position.y > maxHeight)
         {
             transform.position = new Vector3(transform.position.x, maxHeight, transform.position.z);
             velocity.y = 0f;
         }
 
-        Vector2 direction = currentCursorPosition - new Vector2(transform.position.x, transform.position.y); //direction from Center to Cursor
-        Vector2 normalizedDirection = direction.normalized;
+        if (Input.GetButtonUp("Jump") && isGrounded)
+        {
+            jumpButtonReset = true;
+        }
 
-        hand.position = new Vector2(transform.position.x, transform.position.y) + (normalizedDirection * handRadius);
-        
+
+        Vector2 centerPosition = new Vector2(transform.position.x, transform.position.y);
+        float distance = Vector2.Distance(currentCursorPosition, centerPosition);
+
+        if (distance > handRadius)
+        {
+            Vector2 fromOriginToObject = currentCursorPosition - centerPosition;
+            fromOriginToObject *= handRadius / distance;
+            hand.position = centerPosition + fromOriginToObject;
+        }
+        else
+        {
+            hand.position = currentCursorPosition;
+        }
+
         if(Input.GetButton("Fire1"))
         {
             if(isHovering)
@@ -136,9 +157,8 @@ public class PlayerController : MonoBehaviour
         if(!isGrounded && currentJumpLength <= 0f)
         {
             isJumpCanceled = true;
+            jumpButtonReset = false;
         }
-
-        //Debug.Log(currentJumpLength);
     }
 
     private void OnJumpStart()
@@ -157,9 +177,6 @@ public class PlayerController : MonoBehaviour
     private void OnJumpEnd()
     {
         velocity.y = 0f;
-
-        //if (velocity.y > 6.0f)
-        //    velocity.y = 6.0f;
     }
 
     private void OnDrawGizmos()
