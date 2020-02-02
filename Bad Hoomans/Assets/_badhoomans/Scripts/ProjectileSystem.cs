@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ProjectileSystem : MonoBehaviour
 {
     [SerializeField] private GameManager gameManager = null;
+    [SerializeField] public AudioManager audioManager = null;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform projectilesObject;
     [SerializeField] private Transform topLeftAnchor;
@@ -26,6 +27,13 @@ public class ProjectileSystem : MonoBehaviour
 
     private Vector2 direction = Vector2.zero;
     private Vector2 startPos = Vector2.zero;
+
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -75,6 +83,7 @@ public class ProjectileSystem : MonoBehaviour
         projectile.GetComponent<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
         projectile.GetComponent<Projectile>().gameManager = gameManager;
         projectile.GetComponent<Projectile>().timeToLive = timeToLive;
+        projectile.GetComponent<Projectile>().audioManager = audioManager;
     }
 
     public IEnumerator BeginCountdown()

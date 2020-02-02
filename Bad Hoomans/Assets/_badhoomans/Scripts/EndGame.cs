@@ -29,6 +29,8 @@ public class EndGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
+
         currentScore = PlayerPrefs.GetFloat("SCORE", 0);
         highestScore = PlayerPrefs.GetFloat("HIGHSCORE", 0);
 
