@@ -135,3 +135,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   timeToLive: 5
+  audioSource: {fileID: 0}
+  impactClip: {fileID: 8300000, guid: 43337d486d328dd4398cea96f2e81a27, type: 3}
+  deathClip: {fileID: 8300000, guid: 8b2b7c19f5537204caca881041146679, type: 3}

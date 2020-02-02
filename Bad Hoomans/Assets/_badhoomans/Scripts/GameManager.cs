@@ -10,6 +10,13 @@ public class GameManager : MonoBehaviour
     // game systems
     [SerializeField] private ProjectileSystem projectileSystem = null;
 
+    // audio
+    [SerializeField] private AudioClip clip = null;
+
+    [SerializeField] private AudioClip[] clips = null;
+
+    private AudioSource audioSource = null;
+
     // game scene objects
     public Text currentScoreText;
     public Image hpImage;
@@ -41,11 +48,35 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public bool NextHitKills()
+    {
+        return (currentHp - hitPoint) <= 0f;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         projectileSystem.Begin();
         Cursor.visible = false;
+
+        audioSource = GetComponent<AudioSource>();
+        //audioSource.clip = clip;
+        ////audioSource.loop = true;
+        //audioSource.Play();
+
+
+        StartCoroutine(PlayWarDrums());
+    }
+
+    private IEnumerator PlayWarDrums()
+    {
+        while(true)
+        {
+            AudioClip currentClip = clips[UnityEngine.Random.Range(0, clips.Length)];
+
+            audioSource.PlayOneShot(currentClip);
+            yield return new WaitForSeconds(8f);
+        }
     }
 
     // Update is called once per frame
