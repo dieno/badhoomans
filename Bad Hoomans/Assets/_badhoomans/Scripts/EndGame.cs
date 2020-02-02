@@ -37,6 +37,16 @@ public class EndGame : MonoBehaviour
 
         retryBtn.onClick.AddListener(RetryBtnFunction);
         exitBtn.onClick.AddListener(ExitBtnFunction);
+
+        if(currentScore > highestScore)
+        {
+            scoreMessageTxt.text = "... But you did better at defending your tomb from the bad hoomans.";
+
+        } else if (currentScore <= highestScore)
+        {
+            scoreMessageTxt.text = "... You are not getting any better at defending your tomb from the bad hoomans.";
+
+        }
     }
 
     // Update is called once per frame
