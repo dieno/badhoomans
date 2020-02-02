@@ -42,11 +42,11 @@ public class EndGame : MonoBehaviour
 
         if(currentScore > highestScore)
         {
-            scoreMessageTxt.text = "... But you did better at defending your tomb from the bad hoomans.";
+            scoreMessageTxt.text = "... But you did better at defending your dumpling shop from the bad hoomans.";
 
         } else if (currentScore <= highestScore)
         {
-            scoreMessageTxt.text = "... You are not getting any better at defending your tomb from the bad hoomans.";
+            scoreMessageTxt.text = "... You are not getting any better at defending your dumpling shop from the bad hoomans.";
 
         }
     }
