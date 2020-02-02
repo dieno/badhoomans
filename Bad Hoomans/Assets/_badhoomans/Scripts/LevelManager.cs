@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Transform worldPositionAnchor;
     [SerializeField] private int pyramidHeight;
     [SerializeField] private float gapSize;
+    [SerializeField] private Transform bricksParentObject;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +49,7 @@ public class LevelManager : MonoBehaviour
 
                 currentPosition.x += (brickWidth / 2f) * i;
 
-                Instantiate(brickPrefab, currentPosition, Quaternion.identity);
+                Instantiate(brickPrefab, currentPosition, Quaternion.identity, bricksParentObject);
             }
             test--;
         }
