@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class EndGame : MonoBehaviour
 {
 
-    private float currentScore = 77; // TODO change this to create based on preferences
-    private float highestScore = 99; // TODO change this to create based on preferences
+    private float currentScore = 0;
+    private float highestScore = 0;
 
     public Button retryBtn;
     public Button exitBtn;
@@ -29,6 +29,9 @@ public class EndGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentScore = PlayerPrefs.GetFloat("SCORE", 0);
+        highestScore = PlayerPrefs.GetFloat("HIGHSCORE", 0);
+
         currentScoreTxt.text = currentScore.ToString();
         highestScoreTxt.text = highestScore.ToString();
 

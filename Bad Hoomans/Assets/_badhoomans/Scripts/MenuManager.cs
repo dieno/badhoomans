@@ -28,9 +28,7 @@ public class MenuManager : MonoBehaviour
         startButton.onClick.AddListener(StartBtnFunction);
         exitButton.onClick.AddListener(ExitBtnFunction);
 
-        // TODO connect this function to end of game level
-        // replace "10" with actual high score variable
-        highScoreText.text = "10";
+        highScoreText.text = PlayerPrefs.GetFloat("HIGHSCORE", 0).ToString();
     }
 
     // Update is called once per frame
