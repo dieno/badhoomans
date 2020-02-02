@@ -29,13 +29,8 @@ public class LevelManager : MonoBehaviour
 
         SpriteRenderer sr = brickPrefab.GetComponent<SpriteRenderer>();
 
-        //halfWidth = sr.bounds.size.x / 2;
-        //halfHeight = sr.bounds.size.y / 2;
-
         float brickWidth = sr.bounds.size.x;
 
-
-        //Vector2 currentPosition = worldPositionAnchor.position;
         Vector2 offset = new Vector2(brickWidth / 2f, brickWidth / 2f);
 
         int test = pyramidHeight;
@@ -53,26 +48,5 @@ public class LevelManager : MonoBehaviour
             }
             test--;
         }
-
-        //for (int i = pyramidHeight; i >= 0; i--)
-        //{
-        //    for (int j = 0; j <= i; ++j)
-        //    {
-                
-
-        //        Vector2 currentPosition = new Vector2(worldPositionAnchor.position.x + (j * (brickWidth + gapSize)), worldPositionAnchor.position.y + (i * (brickWidth + gapSize)));
-
-        //        currentPosition += offset;
-
-        //        Debug.Log(i + ", " + j + " | " + currentPosition);
-
-               
-
-        //        if(i == pyramidHeight && j == 0)
-        //        {
-        //            Instantiate(brickPrefab, currentPosition, Quaternion.identity);
-        //        }
-        //    }
-        //}
     }
 }
