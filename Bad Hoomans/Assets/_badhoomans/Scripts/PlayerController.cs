@@ -20,7 +20,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxHeight = 5f;
     [SerializeField] private float maxJumpLength = 10f;
 
+    [SerializeField] private SpriteRenderer handSprite = null;
+
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
     private Vector3 velocity = Vector3.zero;
     private bool isGrounded = false;
     private float groundY = 0f;
@@ -41,6 +44,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
 
         groundY = transform.position.y;
 
@@ -159,6 +163,28 @@ public class PlayerController : MonoBehaviour
             isJumpCanceled = true;
             jumpButtonReset = false;
         }
+
+
+        Vector3 A = transform.position + (Vector3.up * 2f);
+        Vector3 B = transform.position - (Vector3.up * 2f);
+
+        //(AB, AM), where M(X, Y) is the query point:
+
+        //position = sign((Bx - Ax) * (Y - Ay) - (By - Ay) * (X - Ax))
+
+        float facingDirection = (B.x - A.x) * (currentCursorPosition.y - A.y) - (B.y - A.y) * (currentCursorPosition.x - A.x);
+
+        if(facingDirection >= 0)
+        {
+            sr.flipX = true;
+            handSprite.flipX = false;
+        }
+        else
+        {
+            sr.flipX = false;
+            handSprite.flipX = true;
+        }
+
     }
 
     private void OnJumpStart()
