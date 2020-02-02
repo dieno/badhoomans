@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     // game scene objects
     public Text currentScoreText;
     public Image hpImage;
+    public Image meteorIndicator;
 
     // private variables
     private float currentScore = 0.0f;
